@@ -10,9 +10,9 @@ public class Bit {
     }
 
     int mostCommon (){
-        return numberOfOnes > numberOfZeroes ? 1 : 0;
+        return numberOfOnes >= numberOfZeroes ? 1 : 0;
     }
     int leastCommon(){
-        return numberOfOnes < numberOfZeroes ? 1 : 0;
+        return numberOfOnes <= numberOfZeroes ? 1 : 0;
     }
 }

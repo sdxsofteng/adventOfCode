@@ -12,27 +12,58 @@ class SubmarinePower{
         File input = new File("input.txt");
         try{
             Scanner sc = new Scanner(input);
-            for(int i = 0; i < maxNumber; i ++){
-                bits.add(new Bit(i));
-            }
             while(sc.hasNextLine()){
-                String line = sc.nextLine();
-                oxy.add(line);
-                co2.add(line);
-                for(int i = 0; i < maxNumber; i++){
-                    char analchar = line.charAt(i);
-                    if(analchar == '0'){
-                        bits.get(i).numberOfZeroes++;
+                String temp = sc.nextLine();
+                oxy.add(temp);
+                co2.add(temp);
+            }
+            for(int x = 0; x < maxNumber; x++){
+                if(oxy.size() == 1){
+                    break;
+                }
+                Bit newBit = new Bit(x);
+                for(int y = 0; y < oxy.size(); y++){
+                    if(oxy.get(y).charAt(x) == '1'){
+                        newBit.numberOfOnes++;
                     }else{
-                        bits.get(i).numberOfOnes++;
+                        newBit.numberOfZeroes++;
                     }
                 }
+                int e = 0;
+                while(e < oxy.size()){
+                    if(Character.getNumericValue(oxy.get(e).charAt(x)) != newBit.mostCommon()){
+                        oxy.remove(e);
+                    }else{
+                        e++;
+                    }
+                }
+
+            }
+
+            for(int x = 0; x < maxNumber; x++){
+                if(co2.size() == 1){
+                    break;
+                }
+                Bit newBit = new Bit(x);
+                for(int y = 0; y < co2.size(); y++){
+                    if(co2.get(y).charAt(x) == '1'){
+                        newBit.numberOfOnes++;
+                    }else{
+                        newBit.numberOfZeroes++;
+                    }
+                }
+                int e = 0;
+                while(e < co2.size()){
+                    if(Character.getNumericValue(co2.get(e).charAt(x)) != newBit.leastCommon()){
+                        co2.remove(e);
+                    }else{
+                        e++;
+                    }
+                }
+
             }
         } catch (FileNotFoundException e){
-            System.out.println("coco");
+            System.out.println();
         }
-
-
-
     }
 }
