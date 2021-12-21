@@ -1,7 +1,7 @@
 public class Element {
     int valeur;
 
-    Element(int toto){
-        valeur = toto;
+    Element(int valeur){
+        this.valeur = valeur;
     }
 }
